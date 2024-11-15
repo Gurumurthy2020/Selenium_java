@@ -35,7 +35,7 @@ public class Admin extends Basepage {
 	public Admin verifyAdminTab() {
 		boolean actual=adminTitle.isDisplayed();
 		if (actual) {
-			System.out.println("we are in admin page");
+			System.out.println("we are in admin pages");
 		} else {
 			System.out.println("we are not in admin page");
 		}
