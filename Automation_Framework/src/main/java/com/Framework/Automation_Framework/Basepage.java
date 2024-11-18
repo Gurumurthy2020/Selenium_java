@@ -39,6 +39,8 @@ public class Basepage {
 
 	@BeforeMethod
 	public void webdriverCreation() {
+		System.out.println("before method");
+
 		driver = WebDriverManager.chromedriver().create();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");

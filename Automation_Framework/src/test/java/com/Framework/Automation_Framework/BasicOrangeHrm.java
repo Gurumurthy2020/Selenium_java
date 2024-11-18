@@ -14,6 +14,7 @@ public class BasicOrangeHrm extends Basepage {
 	
 	@BeforeTest
 	public void setValue() {
+		System.out.println("before test");
 		excelFileName="Login";
 	}
 
