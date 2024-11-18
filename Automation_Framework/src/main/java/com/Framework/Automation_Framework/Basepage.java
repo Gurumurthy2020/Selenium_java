@@ -42,7 +42,7 @@ public class Basepage {
 		driver = WebDriverManager.chromedriver().create();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		implicitwait(30);
+		implicitwait(20);
 
 	}
 
