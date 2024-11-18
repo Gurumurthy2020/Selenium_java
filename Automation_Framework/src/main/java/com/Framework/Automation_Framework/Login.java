@@ -26,13 +26,13 @@ public class Login extends Basepage {
 	@FindBy(xpath = "//button[@type='submit']")
 	private WebElement loginButton;
 
-	public Login enterUserName() {
-		username.sendKeys("Admin");
+	public Login enterUserName(String uName) {
+		username.sendKeys(uName);
 		return this;
 	}
 
-	public Login enterPassword() {
-		password.sendKeys("admin123");
+	public Login enterPassword(String pWord) {
+		password.sendKeys(pWord);
 		return this;
 	}
 
