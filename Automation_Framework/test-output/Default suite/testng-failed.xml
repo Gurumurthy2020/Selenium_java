@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.Framework.Automation_Framework.AdminTest">
+      <class name="com.Framework.Automation_Framework.BasicOrangeHrm">
         <methods>
-          <include name="AdminVerification"/>
-          <include name="quit"/>
           <include name="webdriverCreation"/>
+          <include name="LoginOrangeHrm"/>
+          <include name="quit"/>
         </methods>
-      </class> <!-- com.Framework.Automation_Framework.AdminTest -->
+      </class> <!-- com.Framework.Automation_Framework.BasicOrangeHrm -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,32 +1,33 @@
 package com.Framework.Automation_Framework;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-/**
- * Unit test for simple App.
- */
+import utils.ReadExcelData;
+
+
+
 public class BasicOrangeHrm extends Basepage {
+	
+	@BeforeTest
+	public void setValue() {
+		System.out.println("before test");
+		excelFileName="Login";
+	}
 
    
-    @org.testng.annotations.Test
-    public void LoginOrangeHrm() {
+	@Test(dataProvider = "fetchData")
+    public void LoginOrangeHrm(String uName,String pWord, String title ) {
     	
     	Login lp= new Login(driver);
      
-    	  lp.enterUserName()
-    	  .enterPassword()
+    	  lp.enterUserName(uName)
+    	  .enterPassword(pWord)
     	  .clickLoginButton()
-    	  .verifyingTitle("OrangeHRM")
+    	  .verifyingTitle(title)
     	  .clickUserName()
     	  .clickLogoutButton();
     	 
