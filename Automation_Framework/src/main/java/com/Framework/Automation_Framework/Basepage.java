@@ -3,6 +3,8 @@ package com.Framework.Automation_Framework;
 import java.io.IOException;
 import java.time.Duration;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,6 +33,7 @@ public class Basepage {
 	public Home hp;
 	public Admin ap;
 	public String excelFileName;
+	public static Logger logfile = LogManager.getLogger(Basepage.class.getName());
 
 	@DataProvider(name = "fetchData")
 	public String[][] fetchData() throws IOException {
@@ -45,6 +48,7 @@ public class Basepage {
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		implicitwait(20);
+		logfile.info("url entered successfully");
 
 	}
 

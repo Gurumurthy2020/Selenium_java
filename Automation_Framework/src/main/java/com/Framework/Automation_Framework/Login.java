@@ -1,16 +1,21 @@
 package com.Framework.Automation_Framework;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+
 public class Login extends Basepage {
 
 	
 	 private WebDriver driver;
 	  
+		public static Logger logfile = LogManager.getLogger(Login.class.getName());
+
 	  public Login(WebDriver driver) {
 		  this.driver = driver;
 	  PageFactory.initElements(driver, this); 
