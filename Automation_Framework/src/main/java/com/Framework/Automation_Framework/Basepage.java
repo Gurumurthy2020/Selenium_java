@@ -1,5 +1,6 @@
 package com.Framework.Automation_Framework;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
@@ -14,11 +15,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utils.ReadExcelData;
@@ -33,11 +41,43 @@ public class Basepage {
 	public Home hp;
 	public Admin ap;
 	public String excelFileName;
+	
+	public static ExtentReports extent;
+	public static ExtentTest test;
+	public String testName,testDescription,testAuthor;
+	
 	public static Logger logfile = LogManager.getLogger(Basepage.class.getName());
+	
+	
+	@BeforeSuite
+	public void startReport() {
+		extent = new ExtentReports();
+		ExtentSparkReporter spark = new ExtentSparkReporter("target\\extentreports.html");
+		spark.config().setTheme(Theme.DARK);
+		spark.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+		extent.attachReporter(spark);
+	}
+	
+	@BeforeClass
+	public void testDetails() {
+		test = extent.createTest(testName);
+		test.assignAuthor(testAuthor);
+		test.assignCategory(testDescription);
+		
+	}
+	
+	public void reportStep(String stepinfo, String status ) {		
+		if (status.equalsIgnoreCase("pass")) {
+			test.pass(stepinfo);
+		}else if (status.equalsIgnoreCase("fail")) {
+			test.fail(stepinfo);
+			throw new RuntimeException("See extend report for more details");	
+		}
+	}
 
 	@DataProvider(name = "fetchData")
 	public String[][] fetchData() throws IOException {
-		return ReadExcelData.readData(excelFileName);	
+		return ReadExcelData.readData(excelFileName);
 	}
 
 	@BeforeMethod
@@ -52,9 +92,15 @@ public class Basepage {
 
 	}
 
+
 	@AfterMethod
 	public void quit() {
 		driver.quit();
+	}
+	
+	@AfterSuite
+	public void teardown() {
+		extent.flush();
 	}
 
 	public void url(String url) {

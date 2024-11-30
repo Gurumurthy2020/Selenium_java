@@ -24,18 +24,33 @@ public class Home extends Basepage {
 	
 	
 	public Home verifyingTitle(String title) {
-    	String expected=driver.getTitle();
-    	Assert.assertEquals(expected, title);
-    	
+    	try {
+			String expected=driver.getTitle();
+			Assert.assertEquals(expected, title);
+			reportStep("Page title verified successfully ", "pass");
+		} catch (Exception e) {
+			reportStep("Page title not matching ", "fail");
+		}
+
     	return this;
 	}
 	
 	public Home clickUserName() {
-		clickUserName.click();
+		try {
+			clickUserName.click();
+			reportStep("username clicked successfully ", "pass");
+		} catch (Exception e) {
+			reportStep("username not clicked successfully ", "fail");
+		}
 		return this;
 	}
 	public Login clickLogoutButton() {
-		clickLogout.click();
+		try {
+			clickLogout.click();
+			reportStep("Logout clciked successfully ", "pass");
+		} catch (Exception e) {
+			reportStep("Logout clciked not successfully ", "fail");
+		}
 		return new Login(driver);
 
 	}

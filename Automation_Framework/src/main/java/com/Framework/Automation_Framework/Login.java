@@ -32,17 +32,33 @@ public class Login extends Basepage {
 	private WebElement loginButton;
 
 	public Login enterUserName(String uName) {
-		username.sendKeys(uName);
+		try {
+			username.sendKeys(uName);
+			reportStep("Username entered successfully ", "pass");
+		} catch (Exception e) {
+			reportStep("Username not entered successfully ", "fail");
+		}
 		return this;
 	}
 
 	public Login enterPassword(String pWord) {
-		password.sendKeys(pWord);
+		try {
+			password.sendKeys(pWord);
+			reportStep("Password entered successfully ", "pass");
+		} catch (Exception e) {
+			reportStep("Password not entered successfully ", "fail");
+		}
 		return this;
 	}
 
 	public Home clickLoginButton() {
-		loginButton.click();
+		try {
+			loginButton.click();
+			reportStep("login button clicked successfully ", "pass");
+
+		} catch (Exception e) {
+			reportStep("login button not clicked successfully ", "fail");
+		}
 		return new Home(driver);
 	}
 
