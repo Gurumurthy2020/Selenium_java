@@ -8,6 +8,9 @@ public class AdminTest extends Basepage {
 	@BeforeTest
 	public void setValue() {
 		excelFileName="login";
+		testName="Admin Test";
+		testDescription="Verifying orangehrm with Admin Test details";
+		testAuthor="Guru";
 	}
 
 	

@@ -19,12 +19,12 @@
             <AppenderRef ref="LogToFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Logger>
-        <Logger name="org.springframework.boot" level="error" additivity="false">
+   <!--     <Logger name="org.springframework.boot" level="error" additivity="false">
             <AppenderRef ref="LogToConsole"/>
         </Logger>
         <Root level="TRACE">
             <AppenderRef ref="LogToFile"/>
             <AppenderRef ref="LogToConsole"/>
-        </Root>
+        </Root>-->
     </Loggers>
 </Configuration>
